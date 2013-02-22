@@ -12,8 +12,8 @@ Reads the folder names from the source directory and creates empty folder in the
 
 - Unix like OS ( tested on ubuntu )
 - python 2.7
-- docopt
 - pip
+	- docopt
 
 
 ## Installation
