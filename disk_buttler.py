@@ -12,8 +12,26 @@ import os
 from docopt import *
 
 
+# See http://docs.python.org/library/argparse.html#module-argparse
+def parse_args():
+    # create a argument parser from the library
+    args_parser = argparse.ArgumentParser(description='Disk Buttler')
+
+    # 1st argument is the source directory
+    args_parser.add_argument('source',
+        type=str,
+        help='directory to read the subfolder names from')
+
+    # 2nd argument is the source directory
+    args_parser.add_argument('destination',
+        type=str,
+        help='directory where the new empty subfolders should be created')
+
+    return args_parser.parse_args()
+
+
 def mirror_dir(src, dst):
-    # like an ls call
+    #create a list containing src subfolder foldernames
     src_content = os.listdir(src)
 
     only_dir_names = []
