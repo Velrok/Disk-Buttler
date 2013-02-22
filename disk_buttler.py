@@ -52,8 +52,8 @@ def mirror_dir(src, dst):
 
 if __name__ == '__main__':
     args = docopt(__doc__)
-    src = arguments["<source_dir>"]
-    dst = arguments["<destination_dir>"]
+    src = args["<source_dir>"]
+    dst = args["<destination_dir>"]
 
     mirror_dir(src, dst)
 
