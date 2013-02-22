@@ -46,7 +46,8 @@ def mirror_dir(src, dst):
     #generate folder in dst path based on only_dir_names
     for dst_element in only_dir_names:
         dst_path = os.path.join(dst, dst_element)
-        os.mkdir(dst_path)
+        if not os.path.exists(dst_path):
+            os.mkdir(dst_path)
 
 
 if __name__ == '__main__':
