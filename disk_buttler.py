@@ -1,37 +1,24 @@
 # -*- coding: utf-8 -*-
 import os
-
 import argparse
 
 
-##########################################
-#   Argument parsing
-##########################################
 # See http://docs.python.org/library/argparse.html#module-argparse
+def parse_args():
+    # create a argument parser from the library
+    args_parser = argparse.ArgumentParser(description='Disk Buttler')
 
-# create a argument parser from the library
-args_parser = argparse.ArgumentParser(description='Disk Buttler')
+    # 1st argument is the source directory
+    args_parser.add_argument('source',
+        type=str,
+        help='directory to read the subfolder names from')
 
-# 1st argument is the source directory
-args_parser.add_argument('source',
-    type=str,
-    help='directory to read the subfolder names from')
+    # 2nd argument is the source directory
+    args_parser.add_argument('destination',
+        type=str,
+        help='directory where the new empty subfolders should be created')
 
-# 2nd argument is the source directory
-args_parser.add_argument('destination',
-    type=str,
-    help='directory where the new empty subfolders should be created')
-
-arguments = args_parser.parse_args()
-
-##########################################
-#   Argument parsing END
-##########################################
-
-
-#get src and dst path from user
-src = arguments.source
-dst = arguments.destination
+    return args_parser.parse_args()
 
 
 def mirror_dir(src, dst):
@@ -52,9 +39,16 @@ def mirror_dir(src, dst):
         dst_path = os.path.join(dst, dst_element)
         os.mkdir(dst_path)
 
-mirror_dir(src, dst)
 
-src_serien = os.path.join(src, "Serien")
-dst_serien = os.path.join(dst, "Serien")
+if __name__ == '__main__':
+    #get src and dst path from user
+    arguments = parse_args()
+    src = arguments.source
+    dst = arguments.destination
 
-mirror_dir(src_serien, dst_serien)
+    mirror_dir(src, dst)
+
+    src_serien = os.path.join(src, "Serien")
+    dst_serien = os.path.join(dst, "Serien")
+
+    mirror_dir(src_serien, dst_serien)
